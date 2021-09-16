@@ -36,11 +36,11 @@ const LoginForm = styled.form`
 `
 
 const LoginInput = styled.input`
-  border: 1px solid gray;
-  border-radius: 3px;
   padding: 10px;
   width: 30%;
   font-size: 12px;
+  border: 1px solid gray;
+  border-radius: 3px;
 `
 const Greeting = styled.h2`
   display: ${(props) => (props.loginState ? "none" : "")};
