@@ -37,7 +37,6 @@ const LoginForm = styled.form`
 
 const LoginInput = styled.input`
   padding: 10px;
-  width: 30%;
   font-size: 12px;
   border: 1px solid gray;
   border-radius: 3px;

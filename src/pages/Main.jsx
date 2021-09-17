@@ -2,6 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import Login from "../components/Login"
 import Clock1 from "../components/Clock1"
+import Todo from "../components/Todo"
 import GlobalStyle from "../styles/GlobalStyle"
 
 const images = [
@@ -27,6 +28,7 @@ export default function Main() {
       <Container>
         <Clock1 />
         <Login />
+        <Todo />
       </Container>
     </>
   )
@@ -38,4 +40,8 @@ const Container = styled.section`
   background-image: url("momentum_react/public/asset/img/{chosenImages}");
   background-repeat: no-repeat;
   background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `
