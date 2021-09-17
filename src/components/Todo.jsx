@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import styled from "styled-components"
+import TodoList from "./TodoList"
 
 export default function Todo() {
   const [todos, setTodos] = useState([])
@@ -12,9 +13,14 @@ export default function Todo() {
 
   console.log(todos)
   return (
-    <TodoForm onSubmit={onSubmitTodo}>
-      <TodoInput placeholder="오늘의 할일은 무엇인가요?🌱"></TodoInput>
-    </TodoForm>
+    <>
+      <TodoForm onSubmit={onSubmitTodo}>
+        <TodoInput placeholder="오늘의 할일은 무엇인가요?🌱"></TodoInput>
+      </TodoForm>
+      {todos.map((todo) => (
+        <TodoList todolist={todo} />
+      ))}
+    </>
   )
 }
 
