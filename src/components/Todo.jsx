@@ -12,8 +12,13 @@ export default function Todo() {
     }
   }, [])
 
+  console.log(todos)
+
+  useEffect(() => {
+    saveTodosInLocalStorage()
+  }, [todos])
+
   const getLocalStorageTodos = () => {
-    console.log(savedTodo)
     setTodos(...todos, savedTodo)
   }
 
@@ -24,23 +29,27 @@ export default function Todo() {
   const onSubmitTodo = (e) => {
     e.preventDefault()
     const inputValue = e.target.childNodes[0].value
-    setTodos([...todos, inputValue])
+    setTodos([...todos, { text: inputValue, id: Date.now() }])
     e.target.childNodes[0].value = ""
   }
 
-  useEffect(() => {
-    if (todos.length > 0) {
-      saveTodosInLocalStorage()
-    }
-  }, [todos])
+  const handleDeleteTodo = (id) => {
+    setTodos(todos.filter((el) => el.id !== id))
+  }
 
-  console.log(todos)
   return (
     <>
       <TodoForm onSubmit={onSubmitTodo}>
         <TodoInput placeholder="오늘의 할일은 무엇인가요?🌱"></TodoInput>
       </TodoForm>
-      {savedTodo && todos.map((todo) => <TodoList todolist={todo} />)}
+      {todos &&
+        todos.map((todo) => (
+          <TodoList
+            onDelete={handleDeleteTodo}
+            id={todo.id}
+            todolist={todo.text}
+          />
+        ))}
     </>
   )
 }
