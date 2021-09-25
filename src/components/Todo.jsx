@@ -12,8 +12,6 @@ export default function Todo() {
     }
   }, [])
 
-  console.log(todos)
-
   useEffect(() => {
     saveTodosInLocalStorage()
   }, [todos])
@@ -42,7 +40,7 @@ export default function Todo() {
       <TodoForm onSubmit={onSubmitTodo}>
         <TodoInput placeholder="오늘의 할일은 무엇인가요?🌱"></TodoInput>
       </TodoForm>
-      {todos &&
+      {todos.length &&
         todos.map((todo) => (
           <TodoList
             onDelete={handleDeleteTodo}
