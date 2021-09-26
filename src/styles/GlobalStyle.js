@@ -5,7 +5,8 @@ const GlobalStyle = createGlobalStyle`
   ${reset}
   
   :root{
-    /* font-size: 16px; */
+    font-size: 16px;
+    font-family: 'Noto Sans KR', sans-serif;
   }
   
   * {

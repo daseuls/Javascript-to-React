@@ -18,7 +18,7 @@ const images = [
   "background11.jpg",
   "background12.jpg",
   "background13.jpg",
-  "background14.jpg",
+  "background14.jpeg",
   "background15.jpg",
   "background16.jpg",
   "background17.jpg",
@@ -28,7 +28,7 @@ const images = [
 export default function Main() {
   const chosenImages = images[Math.floor(Math.random() * images.length)]
   const imageUrl = `/img/${chosenImages}`
-
+  console.log(chosenImages)
   return (
     <>
       <GlobalStyle />
