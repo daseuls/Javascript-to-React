@@ -6,7 +6,6 @@ import Todo from "../components/Todo"
 import GlobalStyle from "../styles/GlobalStyle"
 
 const images = [
-  "background.jpg",
   "background2.jpeg",
   "background3.jpg",
   "background4.jpeg",
@@ -17,15 +16,23 @@ const images = [
   "background9.jpg",
   "background10.png",
   "background11.jpg",
+  "background12.jpg",
+  "background13.jpg",
+  "background14.jpg",
+  "background15.jpg",
+  "background16.jpg",
+  "background17.jpg",
+  "background18.jpg",
 ]
 
 export default function Main() {
   const chosenImages = images[Math.floor(Math.random() * images.length)]
-  console.log(chosenImages)
+  const imageUrl = `/img/${chosenImages}`
+
   return (
     <>
       <GlobalStyle />
-      <Container>
+      <Container imageUrl={imageUrl}>
         <Clock1 />
         <Login />
         <Todo />
@@ -37,7 +44,7 @@ export default function Main() {
 const Container = styled.section`
   width: 100vw;
   height: 100vh;
-  background-image: url("momentum_react/public/asset/img/{chosenImages}");
+  background-image: url(${(props) => props.imageUrl});
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;

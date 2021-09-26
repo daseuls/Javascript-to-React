@@ -40,14 +40,16 @@ export default function Todo() {
       <TodoForm onSubmit={onSubmitTodo}>
         <TodoInput placeholder="오늘의 할일은 무엇인가요?🌱"></TodoInput>
       </TodoForm>
-      {todos.length &&
+      {
+        // todos &&
         todos.map((todo) => (
           <TodoList
             onDelete={handleDeleteTodo}
             id={todo.id}
             todolist={todo.text}
           />
-        ))}
+        ))
+      }
     </>
   )
 }
