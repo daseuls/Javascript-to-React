@@ -36,31 +36,40 @@ export default function Todo() {
   }
 
   return (
-    <>
+    <TodoContainer>
       <TodoForm onSubmit={onSubmitTodo}>
         <TodoInput placeholder="오늘의 할일은 무엇인가요?🌱"></TodoInput>
       </TodoForm>
-      {
-        // todos &&
-        todos.map((todo) => (
-          <TodoList
-            onDelete={handleDeleteTodo}
-            id={todo.id}
-            todolist={todo.text}
-          />
-        ))
-      }
-    </>
+      <TodoInputContainer>
+        {todos &&
+          todos.map((todo) => (
+            <TodoList
+              onDelete={handleDeleteTodo}
+              id={todo.id}
+              todolist={todo.text}
+            />
+          ))}
+      </TodoInputContainer>
+    </TodoContainer>
   )
 }
 
+const TodoContainer = styled.div`
+  height: 35vh;
+`
 const TodoForm = styled.form``
 
 const TodoInput = styled.input`
   padding: 10px;
   width: 300px;
-  border: 1px solid black;
+  border-bottom: 2px solid white;
   border-radius: 3px;
   margin: 10px;
   color: black;
+`
+
+const TodoInputContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
 `

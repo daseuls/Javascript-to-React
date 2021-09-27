@@ -9,21 +9,25 @@ export default function TodoList(props) {
   return (
     <Container>
       <TodoText>{props.todolist}</TodoText>
-      <DeleteButton onClick={deleteTodo}>❌</DeleteButton>
+      <DeleteButton onClick={deleteTodo}>X</DeleteButton>
     </Container>
   )
 }
 
 const Container = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   padding: 5px;
 `
 const TodoText = styled.li`
   margin-right: 5px;
+  color: white;
+  font-weight: 900;
+  font-size: 20px;
 `
 
 const DeleteButton = styled.button`
   cursor: pointer;
+  color: white;
 `

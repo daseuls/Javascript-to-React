@@ -3,6 +3,7 @@ import styled from "styled-components"
 import Login from "../components/Login"
 import Clock1 from "../components/Clock1"
 import Todo from "../components/Todo"
+import Weather from "../components/Weather"
 import GlobalStyle from "../styles/GlobalStyle"
 
 const images = [
@@ -28,11 +29,12 @@ const images = [
 export default function Main() {
   const chosenImages = images[Math.floor(Math.random() * images.length)]
   const imageUrl = `/img/${chosenImages}`
-  console.log(chosenImages)
+
   return (
     <>
       <GlobalStyle />
       <Container imageUrl={imageUrl}>
+        <Weather />
         <Clock1 />
         <Login />
         <Todo />
