@@ -5,6 +5,7 @@ import Clock1 from "../components/Clock1"
 import Todo from "../components/Todo"
 import Weather from "../components/Weather"
 import GlobalStyle from "../styles/GlobalStyle"
+import SearchBar from "../components/SearchBar"
 
 const images = [
   "background2.jpeg",
@@ -34,6 +35,7 @@ export default function Main() {
     <>
       <GlobalStyle />
       <Container imageUrl={imageUrl}>
+        <SearchBar />
         <Weather />
         <Clock1 />
         <Login />

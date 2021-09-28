@@ -19,12 +19,17 @@ body {
   font-family: 'Noto Sans KR', sans-serif;
 }
 
+button {
+  cursor: pointer;
+}
+
 button,
 input {
   background-color: transparent;
   outline: none;
   border: none;
   font-size: inherit;
+
 }
 
 ul,li {
