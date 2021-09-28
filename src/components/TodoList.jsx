@@ -21,7 +21,7 @@ export default function TodoList(props) {
     <Container>
       <Input
         checked={props.isCheckedInput}
-        onClick={test}
+        onChange={test}
         type="checkbox"
         name="todo"
       ></Input>
