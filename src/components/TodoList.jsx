@@ -2,13 +2,12 @@ import React, { useState } from "react"
 import styled from "styled-components"
 
 export default function TodoList(props) {
-  console.log(props.isCheckedInput)
   const deleteTodo = () => {
     const { onDelete, id } = props
     onDelete(id)
   }
 
-  const test = (e) => {
+  const handleCheckedInput = (e) => {
     const { onCheck, id } = props
     if (e.target.checked === true) {
       onCheck(true, id)
@@ -21,7 +20,7 @@ export default function TodoList(props) {
     <Container>
       <Input
         checked={props.isCheckedInput}
-        onChange={test}
+        onChange={handleCheckedInput}
         type="checkbox"
         name="todo"
       ></Input>
