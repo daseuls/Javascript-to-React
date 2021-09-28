@@ -19,7 +19,12 @@ export default function TodoList(props) {
 
   return (
     <Container>
-      <Input onClick={test} type="checkbox" name="todo"></Input>
+      <Input
+        checked={props.isCheckedInput}
+        onClick={test}
+        type="checkbox"
+        name="todo"
+      ></Input>
       <TodoText checked={props.isCheckedInput}>{props.todolist}</TodoText>
       <DeleteButton onClick={deleteTodo}>X</DeleteButton>
     </Container>
