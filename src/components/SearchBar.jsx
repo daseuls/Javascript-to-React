@@ -17,4 +17,10 @@ export default function SearchBar() {
 
 const Container = styled.form``
 
-const SearchInput = styled.input``
+const SearchInput = styled.input`
+  width: 35vw;
+  border: 1px solid white;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  padding: 5px;
+`

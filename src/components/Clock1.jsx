@@ -68,7 +68,7 @@ const TimeContainer = styled.section`
   align-items: center;
   margin-bottom: 30px;
   background-color: white;
-  padding: 10px;
+  padding: 15px;
   border-radius: 8px;
 `
 
