@@ -30,7 +30,6 @@ export default function Weather() {
         })
       })
   }
-  console.log(weatherInfo)
   const onGeoError = () => {}
   return (
     <WeatherContainer>

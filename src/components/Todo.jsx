@@ -27,12 +27,26 @@ export default function Todo() {
   const onSubmitTodo = (e) => {
     e.preventDefault()
     const inputValue = e.target.childNodes[0].value
-    setTodos([...todos, { text: inputValue, id: Date.now() }])
+    setTodos([
+      ...todos,
+      { text: inputValue, id: Date.now(), isCheckedInput: false },
+    ])
     e.target.childNodes[0].value = ""
   }
 
   const handleDeleteTodo = (id) => {
     setTodos(todos.filter((el) => el.id !== id))
+  }
+
+  const handleCheckedTodo = (bool, id) => {
+    setTodos(
+      [...todos].map((element) => {
+        if (element.id === id) {
+          element.isCheckedInput = bool
+        }
+        return element
+      })
+    )
   }
 
   return (
@@ -47,6 +61,8 @@ export default function Todo() {
               onDelete={handleDeleteTodo}
               id={todo.id}
               todolist={todo.text}
+              isCheckedInput={todo.isCheckedInput}
+              onCheck={handleCheckedTodo}
             />
           ))}
       </TodoInputContainer>

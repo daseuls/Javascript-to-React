@@ -2,24 +2,25 @@ import React, { useState } from "react"
 import styled from "styled-components"
 
 export default function TodoList(props) {
-  const [isCheckedInput, setIsCheckedInput] = useState(false)
+  console.log(props.isCheckedInput)
   const deleteTodo = () => {
     const { onDelete, id } = props
     onDelete(id)
   }
 
   const test = (e) => {
+    const { onCheck, id } = props
     if (e.target.checked === true) {
-      setIsCheckedInput(true)
+      onCheck(true, id)
     } else if (e.target.checked === false) {
-      setIsCheckedInput(false)
+      onCheck(false, id)
     }
   }
 
   return (
     <Container>
       <Input onClick={test} type="checkbox" name="todo"></Input>
-      <TodoText checked={isCheckedInput}>{props.todolist}</TodoText>
+      <TodoText checked={props.isCheckedInput}>{props.todolist}</TodoText>
       <DeleteButton onClick={deleteTodo}>X</DeleteButton>
     </Container>
   )

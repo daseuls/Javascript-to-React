@@ -11,7 +11,6 @@ export default function Login() {
     e.preventDefault()
     const loginInputValue = e.target[0].value
     localStorage.setItem("username", loginInputValue)
-    console.log("onLoginSubmit")
     onPaintUsername()
   }
 
@@ -23,7 +22,6 @@ export default function Login() {
 
   const getGreetingText = () => {
     const hours = new Date().getHours()
-    console.log(hours)
     if (6 < hours && hours < 10) {
       return `좋은 아침이에요 ${savedUsername}님! 🌞`
     } else if (9 < hours && hours < 13) {
