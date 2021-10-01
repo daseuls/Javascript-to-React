@@ -19,6 +19,16 @@ export default function Clock() {
   const getMonth = (month) => {
     if (month < 9) {
       return `0${month + 1}`
+    } else {
+      return `${month + 1}`
+    }
+  }
+
+  const getDate = (date) => {
+    if (date < 10) {
+      return `0${date}`
+    } else {
+      return date
     }
   }
 
@@ -52,7 +62,7 @@ export default function Clock() {
   return (
     <TimeContainer>
       <TimeDate>
-        오늘은 {getMonth(month)}월 {date}일 {getDay()}요일 입니다.
+        오늘은 {getMonth(month)}월 {getDate(date)}일 {getDay()}요일 입니다.
       </TimeDate>
       <TimeHours>
         현재 시각은 {getHour(hours)}시 {getMinuteSeconds(minutes)}분{" "}

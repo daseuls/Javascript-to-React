@@ -62,4 +62,5 @@ const Input = styled.input`
   font-size: 20px;
 `
 
-const EditButton = styled.button``
+const EditButton = styled.button`
+`
