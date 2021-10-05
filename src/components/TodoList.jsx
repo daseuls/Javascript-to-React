@@ -25,7 +25,7 @@ export default function TodoList(props) {
         name="todo"
       ></Input>
       <TodoText checked={props.isCheckedInput}>{props.todolist}</TodoText>
-      <EditButton>편집</EditButton>
+      {/* <EditButton>편집</EditButton> */}
       <DeleteButton onClick={deleteTodo}>X</DeleteButton>
     </Container>
   )
@@ -62,5 +62,4 @@ const Input = styled.input`
   font-size: 20px;
 `
 
-const EditButton = styled.button`
-`
+// const EditButton = styled.button``
