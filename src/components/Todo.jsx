@@ -6,11 +6,7 @@ export default function Todo() {
   const [todos, setTodos] = useState({ todo: [], filtered: [] })
   const savedTodo = JSON.parse(localStorage.getItem("todolist"))
 
-  console.log("state값", todos)
-  // console.log(savedTodo)
-  // console.log("로컬스토리지값", savedTodo)
-
-  // state todos가 변경될때 마다 로컬스토리지의 값을 todos로 변경시킨다...
+  // state todos가 변경될때 마다 로컬스토리지의 값을 todos로 변경
   useEffect(() => {
     if (savedTodo) {
       getLocalStorageTodos()
@@ -24,7 +20,10 @@ export default function Todo() {
 
   // 저장된 로컬스토리지의 값을 state로 업데이트
   const getLocalStorageTodos = () => {
-    setTodos({ todo: [...todos.todo, ...savedTodo] })
+    setTodos({
+      todo: [...todos.todo, ...savedTodo],
+      filtered: [...todos.todo, ...savedTodo],
+    })
   }
 
   // state값을 로컬 스토리지에 저장하는 함수
@@ -51,7 +50,10 @@ export default function Todo() {
 
   // Todolist 삭제 함수
   const handleDeleteTodo = (id) => {
-    setTodos({ todo: todos.todo.filter((el) => el.id !== id) })
+    setTodos({
+      todo: todos.todo.filter((el) => el.id !== id),
+      filtered: todos.todo.filter((el) => el.id !== id),
+    })
   }
 
   // Todolist check시에 체크한 todo값 boolean값으로 변경
@@ -63,12 +65,52 @@ export default function Todo() {
         }
         return element
       }),
+      filtered: [...todos.todo].map((element) => {
+        if (element.id === id) {
+          element.isCheckedInput = bool
+        }
+        return element
+      }),
     })
   }
 
-  // const handleFilteringComplete = () => {
-  //   setTodos([...todos].filter((el) => el.isCheckedInput === true))
-  // }
+  // complete클릭시 체크된 할일 필터링
+  // 밑의 함수와 중복된 기능
+  const handleFilteringComplete = () => {
+    setTodos({
+      todo: todos.todo,
+      filtered: [...todos.todo].filter((el) => el.isCheckedInput === true),
+    })
+  }
+
+  // ing클릭시 진행중 할일 필터링
+  const handleFilteringIng = () => {
+    setTodos({
+      todo: todos.todo,
+      filtered: [...todos.todo].filter((el) => el.isCheckedInput === false),
+    })
+  }
+
+  const handleFilteringAll = () => {
+    setTodos({
+      todo: todos.todo,
+      filtered: [...todos.todo],
+    })
+  }
+
+  const mapToComponent = (stateValue) => {
+    return stateValue.map((data) => {
+      return (
+        <TodoList
+          onDelete={handleDeleteTodo}
+          id={data.id}
+          todolist={data.text}
+          isCheckedInput={data.isCheckedInput}
+          onCheck={handleCheckedTodo}
+        />
+      )
+    })
+  }
 
   return (
     <TodoContainer>
@@ -76,17 +118,14 @@ export default function Todo() {
         <TodoInput placeholder="오늘의 할일은 무엇인가요?🌱"></TodoInput>
       </TodoForm>
       <TodoFilter>
-        <TodoFilterName>All</TodoFilterName>
-        <TodoFilterName>Ing</TodoFilterName>
-        <TodoFilterName
-
-        // onClick={handleFilteringComplete}
-        >
+        <TodoFilterName onClick={handleFilteringAll}>All</TodoFilterName>
+        <TodoFilterName onClick={handleFilteringIng}>Ing</TodoFilterName>
+        <TodoFilterName onClick={handleFilteringComplete}>
           Complete
         </TodoFilterName>
       </TodoFilter>
       <TodoInputContainer>
-        {todos.todo &&
+        {/* {todos.todo &&
           todos.todo.map((todo) => (
             <TodoList
               onDelete={handleDeleteTodo}
@@ -95,7 +134,8 @@ export default function Todo() {
               isCheckedInput={todo.isCheckedInput}
               onCheck={handleCheckedTodo}
             />
-          ))}
+          ))} */}
+        {mapToComponent(todos.filtered)}
       </TodoInputContainer>
     </TodoContainer>
   )
