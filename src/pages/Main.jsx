@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import styled from "styled-components"
 import Login from "../components/Login"
 import Clock1 from "../components/Clock1"
@@ -30,11 +30,24 @@ const images = [
 export default function Main() {
   const chosenImages = images[Math.floor(Math.random() * images.length)]
   const imageUrl = `/img/${chosenImages}`
+  const [image, setImage] = useState("")
 
+  const getImageUrl = (e) => {
+    e.preventDefault()
+    const inputValue = e.target.childNodes[0].value
+    fetch(`https://source.unsplash.com/featured/?${inputValue}`).then((res) =>
+      setImage(res.url)
+    )
+  }
+
+  console.log(image)
   return (
     <>
       <GlobalStyle />
-      <Container imageUrl={imageUrl}>
+      <Container imageUrl={image}>
+        <ImageForm onSubmit={getImageUrl}>
+          <ImageInput placeholder="키워드를 입력해주세요" />
+        </ImageForm>
         <SearchBar />
         <Weather />
         <Clock1 />
@@ -56,3 +69,7 @@ const Container = styled.section`
   justify-content: center;
   align-items: center;
 `
+
+const ImageForm = styled.form``
+
+const ImageInput = styled.input``
