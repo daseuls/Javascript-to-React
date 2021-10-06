@@ -38,6 +38,7 @@ export default function Main() {
     fetch(`https://source.unsplash.com/featured/?${inputValue}`).then((res) =>
       setImage(res.url)
     )
+    e.target.childNodes[0].value = ""
   }
 
   console.log(image)
