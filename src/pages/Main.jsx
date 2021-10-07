@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import styled from "styled-components"
 import Login from "../components/Login"
 import Clock1 from "../components/Clock1"
@@ -7,30 +7,43 @@ import Weather from "../components/Weather"
 import GlobalStyle from "../styles/GlobalStyle"
 import SearchBar from "../components/SearchBar"
 
-const images = [
-  "background2.jpeg",
-  "background3.jpg",
-  "background4.jpeg",
-  "background5.jpeg",
-  "background6.jpeg",
-  "background7.jpeg",
-  "background8.jpg",
-  "background9.jpg",
-  "background10.png",
-  "background11.jpg",
-  "background12.jpg",
-  "background13.jpg",
-  "background14.jpeg",
-  "background15.jpg",
-  "background16.jpg",
-  "background17.jpg",
-  "background18.jpg",
-]
+// const images = [
+//   "background2.jpeg",
+//   "background3.jpg",
+//   "background4.jpeg",
+//   "background5.jpeg",
+//   "background6.jpeg",
+//   "background7.jpeg",
+//   "background8.jpg",
+//   "background9.jpg",
+//   "background10.png",
+//   "background11.jpg",
+//   "background12.jpg",
+//   "background13.jpg",
+//   "background14.jpeg",
+//   "background15.jpg",
+//   "background16.jpg",
+//   "background17.jpg",
+//   "background18.jpg",
+// ]
 
 export default function Main() {
-  const chosenImages = images[Math.floor(Math.random() * images.length)]
-  const imageUrl = `/img/${chosenImages}`
   const [image, setImage] = useState("")
+  const savedBackground = localStorage.getItem("background")
+
+  useEffect(() => {
+    if (savedBackground) {
+      setImage(savedBackground)
+    }
+  }, [])
+
+  useEffect(() => {
+    saveBackgroundImage()
+  }, [image])
+
+  const saveBackgroundImage = () => {
+    localStorage.setItem("background", image)
+  }
 
   const getImageUrl = (e) => {
     e.preventDefault()
@@ -39,9 +52,9 @@ export default function Main() {
       setImage(res.url)
     )
     e.target.childNodes[0].value = ""
+    saveBackgroundImage()
   }
 
-  console.log(image)
   return (
     <>
       <GlobalStyle />
