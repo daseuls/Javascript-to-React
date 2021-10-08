@@ -60,7 +60,7 @@ export default function Main() {
       <GlobalStyle />
       <Container imageUrl={image}>
         <ImageForm onSubmit={getImageUrl}>
-          <ImageInput placeholder="키워드를 입력해주세요" />
+          <ImageInput placeholder="" />
         </ImageForm>
         <SearchBar />
         <Weather />
@@ -84,6 +84,14 @@ const Container = styled.section`
   align-items: center;
 `
 
-const ImageForm = styled.form``
+const ImageForm = styled.form`
+  position: absolute;
+  top: 3vh;
+  left: 3vw;
+`
 
-const ImageInput = styled.input``
+const ImageInput = styled.input`
+  border-bottom: 2px solid coral;
+  width: 60px;
+  color: white;
+`

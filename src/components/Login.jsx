@@ -34,15 +34,20 @@ export default function Login() {
       return `오늘 하루도 수고했어요 ${savedUsername}님 🌙`
     }
   }
+
+  const handleClearNickname = () => {
+    localStorage.removeItem("username")
+  }
+
   return (
     <>
       <LoginForm loginState={!loginState} onSubmit={onLoginSubmit}>
         <LoginInput type="text" placeholder="사용자 이름을 입력해주세요" />
       </LoginForm>
-      <Greeting loginState={loginState}>
-        {/* 👋🏻 반가워요, {savedUsername}님 ! */}
-        {getGreetingText()}
-      </Greeting>
+      <GreetingContainer>
+        <Greeting loginState={loginState}>{getGreetingText()}</Greeting>
+        <EditNickname onClick={handleClearNickname}>닉네임 수정</EditNickname>
+      </GreetingContainer>
     </>
   )
 }
@@ -58,9 +63,14 @@ const LoginInput = styled.input`
   border-radius: 3px;
   font-weight: 700;
 `
-const Greeting = styled.h2`
+
+const GreetingContainer = styled.div`
   display: ${(props) => (props.loginState ? "none" : "")};
+  display: flex;
+`
+const Greeting = styled.h2`
   font-size: 20px;
   font-weight: 700;
   margin-bottom: 10px;
 `
+const EditNickname = styled.button``
